@@ -1,70 +1,193 @@
-# Getting Started with Create React App
+# Chord In Key - Guitar Chord Memorization App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application to help guitarists memorize the correct chords in different keys. The app presents random keys and chord positions, challenging users to select the correct chord from multiple options.
 
-## Available Scripts
+![Chord In Key App](https://via.placeholder.com/800x400?text=Chord+In+Key+App)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Random key selection from C, A, G, E, D
+- Random chord position (level) selection from 1-7
+- Multiple choice options for chord selection
+- Immediate feedback on correct/incorrect answers
+- Score tracking
+- Educational information about chord functions
+- Responsive design for desktop and mobile
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Table of Contents
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Development](#development)
+- [Deployment Options](#deployment-options)
+  - [Docker Deployment](#docker-deployment)
+  - [Simple Server Deployment](#simple-server-deployment)
+  - [Manual Deployment](#manual-deployment)
+- [Project Structure](#project-structure)
+- [Customization](#customization)
+- [Troubleshooting](#troubleshooting)
 
-### `npm test`
+## Development
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js (v14 or higher)
+- npm (v6 or higher)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/chord-in-key.git
+   cd chord-in-key
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-### `npm run eject`
+3. Start the development server:
+   ```
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. Open [http://localhost:3000](http://localhost:3000) in your browser (or another port if 3000 is in use).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment Options
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Docker Deployment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The easiest way to deploy this application on any Linux system is using Docker.
 
-## Learn More
+#### Prerequisites
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Docker
+- Docker Compose
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Deployment Steps
 
-### Code Splitting
+1. Clone the repository on your server:
+   ```
+   git clone https://github.com/yourusername/chord-in-key.git
+   cd chord-in-key
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. Run the deployment script:
+   ```
+   ./scripts/deploy.sh
+   ```
 
-### Analyzing the Bundle Size
+   This script will:
+   - Install Docker and Docker Compose if they're not already installed
+   - Build the Docker image
+   - Start the container
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. Access the application at `http://your-server-ip`
 
-### Making a Progressive Web App
+### Simple Server Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+For servers without Docker, you can use the simple deployment script.
 
-### Advanced Configuration
+#### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- A Linux server with sudo access
 
-### Deployment
+#### Deployment Steps
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Clone the repository on your server:
+   ```
+   git clone https://github.com/yourusername/chord-in-key.git
+   cd chord-in-key
+   ```
 
-### `npm run build` fails to minify
+2. Run the simple deployment script:
+   ```
+   ./scripts/deploy-simple.sh
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   This script will:
+   - Install Node.js if it's not already installed
+   - Install Nginx if it's not already installed
+   - Build the React application
+   - Configure Nginx to serve the application
+
+3. Access the application at `http://your-server-ip`
+
+### Manual Deployment
+
+If you prefer to deploy manually or to a different hosting service:
+
+1. Build the application:
+   ```
+   npm run build
+   ```
+
+2. The production-ready files will be in the `build` directory.
+
+3. Deploy these files to any static hosting service like:
+   - Nginx
+   - Apache
+   - Amazon S3
+   - Netlify
+   - Vercel
+   - GitHub Pages
+
+## Project Structure
+
+```
+chord-in-key/
+├── public/                 # Static files
+├── scripts/                # Deployment scripts
+├── src/                    # Source code
+│   ├── components/         # React components
+│   │   ├── ChordGame.js    # Main game component
+│   │   └── ChordGame.css   # Styles for the game
+│   ├── App.js              # Main App component
+│   └── index.js            # Entry point
+├── Dockerfile              # Docker configuration
+├── docker-compose.yml      # Docker Compose configuration
+├── nginx.conf              # Nginx configuration
+└── README.md               # Documentation
+```
+
+## Customization
+
+### Adding More Keys
+
+To add more keys, modify the `chordData` object in `src/components/ChordGame.js`:
+
+```javascript
+const chordData = {
+  // Existing keys...
+
+  // Add a new key
+  F: {
+    1: 'F',
+    2: 'Gm',
+    3: 'Am',
+    4: 'Bb',
+    5: 'C',
+    6: 'Dm',
+    7: 'Edim'
+  }
+};
+```
+
+### Changing the UI
+
+Modify the CSS in `src/components/ChordGame.css` to customize the appearance.
+
+## Troubleshooting
+
+### Application Not Starting
+
+- Check if Node.js and npm are installed correctly
+- Ensure all dependencies are installed with `npm install`
+- Check for errors in the console
+
+### Deployment Issues
+
+- Ensure the server has the necessary permissions
+- Check if ports 80/443 are open and not in use
+- Verify that Nginx/Docker is running correctly
+
+For more help, please open an issue on the GitHub repository.
