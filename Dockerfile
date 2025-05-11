@@ -1,6 +1,10 @@
 # Build stage
 FROM node:20-alpine as build
 
+# Set environment variables for npm
+ARG npm_config_registry=https://registry.npmmirror.com/
+ENV npm_config_registry=${npm_config_registry}
+
 # Set working directory
 WORKDIR /app
 
@@ -8,7 +12,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm config set registry https://registry.npmmirror.com/ && \
+    npm install --no-fund --no-audit --prefer-offline --registry=https://registry.npmmirror.com/
 
 # Copy all files
 COPY . .
@@ -23,7 +28,7 @@ FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy custom nginx config if needed
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
